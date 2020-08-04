@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-/**
- * 创建main函数
- * 执行runApp()函数
- * 传入widget-> Text Widget
- */
-
-///main函数作为入口
-//void main() {
-//  runApp(
-//    MyApp()
-//  );
-//}
-
 main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -24,7 +11,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(
             title: Text(
-                "我是标题"
+                "计数器"
             ),
           ),
           body: ContentWidget()
@@ -33,27 +20,76 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ContentWidget extends StatelessWidget {
+class ContentWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return ContentWidgetStatus();
+  }
+}
+
+class ContentWidgetStatus extends State<ContentWidget> {
+  int counter = 0;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Center(
-      child: TextWidget()
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () {
+                    print("监听到点击计数按钮");
+                    setState(() {
+                      counter++;
+                      print(counter);
+                    });
+                  },
+                  child: Text("计数+1"),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    print("监听到点击计数按钮");
+                    setState(() {
+                      counter--;
+                      print(counter);
+                    });
+                  },
+                  child: Text("计数-1"),
+                ),
+              ],
+            ),
+            Text("当前计数:$counter", style: TextStyle(fontSize: 30),)
+          ],
+        )
     );
   }
 }
 
-class TextWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Text(
-      "hello world",
-      textDirection: TextDirection.ltr,
-      style: TextStyle(
-          fontSize: 30,
-          color: Colors.orange
-      ),
-    );
-  }
-}
+//class ContentWidget extends StatelessWidget {
+//  final int counter;
+
+//  @override
+//  Widget build(BuildContext context) {
+//    // TODO: implement build
+//    return Center(
+//      child: Column(
+//        mainAxisAlignment: MainAxisAlignment.center,
+//        children: <Widget>[
+//          RaisedButton(
+//              onPressed: () {
+//                print("监听到点击计数按钮");
+////                counter++;
+////                print(counter);
+//              },
+//          ),
+//          Text("当前计数:0", style: TextStyle(fontSize: 30, color: Colors.red))
+//        ],
+//      )
+//    );
+//  }
+//}
