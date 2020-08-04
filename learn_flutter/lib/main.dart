@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-/**
- * 创建main函数
- * 执行runApp()函数
- * 传入widget-> Text Widget
- */
-
-///main函数作为入口
-//void main() {
-//  runApp(
-//    MyApp()
-//  );
-//}
-
 main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -33,26 +20,64 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ContentWidget extends StatelessWidget {
+class ContentWidget extends StatefulWidget {
+  
+  ContentWidget() {
+    print("ContentWidget的构造函数被调用");
+  }
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Center(
-      child: TextWidget()
-    );
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    print("ContentWidget的createState被调用");
+    return ContentWidgetStatus();
   }
 }
 
-class TextWidget extends StatelessWidget {
+class ContentWidgetStatus extends State<ContentWidget> {
+
+  int counter = 0;
+
+  ContentWidgetStatus()  {
+    print("ContentWidgetStatus的构造函数被调用");
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("ContentWidgetStatus的initState被调用");
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    print("ContentWidgetStatus的didChangeDependencies被调用");
+  }
+
+  @override
+  void didUpdateWidget(ContentWidget oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print("ContentWidgetStatus的didUpdateWidget被调用");
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text(
-      "hello world",
-      textDirection: TextDirection.ltr,
-      style: TextStyle(
-          fontSize: 30,
-          color: Colors.orange
+    print("ContentWidgetStatus的build被调用");
+    return Center(
+      child: Column(
+        children: <Widget>[
+          RaisedButton(onPressed: () {
+            setState(() {
+              counter++;
+            });
+          },
+          child: Text("计数+1"),
+          ),
+          Text("hello world: $counter", style: TextStyle(fontSize: 30)),
+        ],
       ),
     );
   }
