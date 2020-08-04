@@ -7,11 +7,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      title: "hello world abc",//Android 多应用切换时会显示的标题
       home: Scaffold(
           appBar: AppBar(
             title: Text(
-                "我是标题"
+                "计数器"
             ),
           ),
           body: ContentWidget()
@@ -82,3 +81,27 @@ class ContentWidgetStatus extends State<ContentWidget> {
     );
   }
 }
+
+//class ContentWidget extends StatelessWidget {
+//  final int counter;
+
+//  @override
+//  Widget build(BuildContext context) {
+//    // TODO: implement build
+//    return Center(
+//      child: Column(
+//        mainAxisAlignment: MainAxisAlignment.center,
+//        children: <Widget>[
+//          RaisedButton(
+//              onPressed: () {
+//                print("监听到点击计数按钮");
+////                counter++;
+////                print(counter);
+//              },
+//          ),
+//          Text("当前计数:0", style: TextStyle(fontSize: 30, color: Colors.red))
+//        ],
+//      )
+//    );
+//  }
+//}
