@@ -19,89 +19,49 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ContentWidget extends StatefulWidget {
-  
-  ContentWidget() {
-    print("ContentWidget的构造函数被调用");
-  }
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    print("ContentWidget的createState被调用");
-    return ContentWidgetStatus();
-  }
-}
-
-class ContentWidgetStatus extends State<ContentWidget> {
-
-  int counter = 0;
-
-  ContentWidgetStatus()  {
-    print("ContentWidgetStatus的构造函数被调用");
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("ContentWidgetStatus的initState被调用");
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    print("ContentWidgetStatus的didChangeDependencies被调用");
-  }
-
-  @override
-  void didUpdateWidget(ContentWidget oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-    print("ContentWidgetStatus的didUpdateWidget被调用");
-  }
-
+class ContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    print("ContentWidgetStatus的build被调用");
-    return Center(
-      child: Column(
-        children: <Widget>[
-          RaisedButton(onPressed: () {
-            setState(() {
-              counter++;
-            });
-          },
-          child: Text("计数+1"),
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(
+              text: "哈哈哈哈",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+              )
           ),
-          Text("hello world: $counter", style: TextStyle(fontSize: 30)),
-        ],
+          TextSpan(
+            text: "舒适",
+            style: TextStyle(fontSize: 18)
+          ),
+          TextSpan(
+           text: "\n的发售的福利康师傅时间肯定会恐惧阿贾克斯把v数据库的v北京",
+            style: TextStyle(color: Colors.pink)
+          )
+        ]
       ),
+      textAlign: TextAlign.center,
     );
   }
 }
 
-//class ContentWidget extends StatelessWidget {
-//  final int counter;
-
-//  @override
-//  Widget build(BuildContext context) {
-//    // TODO: implement build
-//    return Center(
-//      child: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
-//        children: <Widget>[
-//          RaisedButton(
-//              onPressed: () {
-//                print("监听到点击计数按钮");
-////                counter++;
-////                print(counter);
-//              },
-//          ),
-//          Text("当前计数:0", style: TextStyle(fontSize: 30, color: Colors.red))
-//        ],
-//      )
-//    );
-//  }
-//}
+class TextDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text(
+      "《定风波》 ——苏轼\n 八百里分麾下炙 五十弦翻塞外声 沙场秋点兵",
+      style: TextStyle(
+        fontSize: 20,
+        color: Color(0xf5f6f5000)
+      ),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+      textAlign: TextAlign.center,
+//        textScaleFactor: 2
+    );
+  }
+}
