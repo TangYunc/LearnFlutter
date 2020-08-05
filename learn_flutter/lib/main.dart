@@ -23,11 +23,131 @@ class ContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return CircleRRect();
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: LoginWidget(),
+    );
   }
 }
 
-class CircleRRect extends StatelessWidget {
+class LoginWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return LoginWidgetStatus();
+  }
+}
+
+class LoginWidgetStatus extends State<LoginWidget> {
+
+  String username;
+  String password;
+
+  GlobalKey<FormState> formGlobalKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Form(
+      key: formGlobalKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.people),
+                labelText: "用户名",
+              ),
+              onSaved: (value) {
+                print("username执行onSaved");
+                this.username = value;
+              },
+            ),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                icon: Icon(Icons.lock),
+                labelText: "密码"
+              ),
+              onSaved: (value) {
+                print("password执行onSaved");
+                this.password = value;
+              },
+            ),
+            SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              height: 44,
+              child: RaisedButton(
+                  onPressed: () {
+                    print("注册按钮点击");
+                    formGlobalKey.currentState.save();
+                    print("提交username: $username, password: $password");
+              },
+              child: Text("注册", style: TextStyle(fontSize: 20,color: Colors.white)),
+              color: Colors.blue
+              ),
+            )
+          ],
+        )
+    );
+  }
+}
+
+class RegisterWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return RegisterWidgetStatus();
+  }
+}
+
+ class RegisterWidgetStatus extends State<RegisterWidget> {
+
+  final textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    textEditingController.addListener(() {
+      print("监听到值的改变：${textEditingController.text}");
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration(
+              icon: Icon(Icons.people),
+              labelText: "username",
+              hintText: "请输入用户名",
+              border: OutlineInputBorder(
+                borderSide: BorderSide(width: 3)
+              ),
+              filled: true,
+              fillColor: Colors.cyan
+            ),
+            onChanged: (value) {
+              print("当前的值: $value");
+            },
+            onSubmitted: (value) {
+              print("当前提交的值: $value");
+            },
+            controller: textEditingController,
+          ),
+        ],
+      ),
+    );
+  }
+ }
+
+
+class RadiusImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
