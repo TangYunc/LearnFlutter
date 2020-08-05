@@ -23,11 +23,41 @@ class ContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return LocalImageDemo();
+    return CircleRRect();
   }
 }
 
-class LocalImageDemo extends StatelessWidget {
+class CircleRRect extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Image.network(
+        "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1963304009,2816364381&fm=26&gp=0.jpg",
+//        width: 200,
+//        height: 200,
+      ),
+    );
+  }
+}
+
+class CircleImageDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ClipOval(
+      child: Image.network(
+          "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1963304009,2816364381&fm=26&gp=0.jpg",
+        width: 200,
+        height: 200,
+      ),
+    );
+  }
+}
+
+/// 本地图片必须要在pubspec.yaml的文件里面将assets:的部分打开，并且将图片路径写入，然后点击右上角的put get
+class AssetsImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
