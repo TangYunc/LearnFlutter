@@ -54,6 +54,7 @@ class LoginWidgetStatus extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextFormField(
+              autovalidate: true,//验证是否为空
               decoration: InputDecoration(
                 icon: Icon(Icons.people),
                 labelText: "用户名",
@@ -62,8 +63,15 @@ class LoginWidgetStatus extends State<LoginWidget> {
                 print("username执行onSaved");
                 this.username = value;
               },
+              validator: (value) {
+                if (value == null || value.length == 0) {
+                  return "用户名不能为空";
+                }
+                return null;
+              },
             ),
             TextFormField(
+              autovalidate: true,//验证是否为空
               obscureText: true,
               decoration: InputDecoration(
                 icon: Icon(Icons.lock),
@@ -72,6 +80,12 @@ class LoginWidgetStatus extends State<LoginWidget> {
               onSaved: (value) {
                 print("password执行onSaved");
                 this.password = value;
+              },
+              validator: (value) {
+                if (value == null || value.length == 0) {
+                  return "密码不能为空";
+                }
+                return null;
               },
             ),
             SizedBox(height: 12),
@@ -82,6 +96,7 @@ class LoginWidgetStatus extends State<LoginWidget> {
                   onPressed: () {
                     print("注册按钮点击");
                     formGlobalKey.currentState.save();
+                    formGlobalKey.currentState.validate();//如果在初始化的时候autovalidate设置为true，这这里可以不用设置进行相应的验证
                     print("提交username: $username, password: $password");
               },
               child: Text("注册", style: TextStyle(fontSize: 20,color: Colors.white)),
