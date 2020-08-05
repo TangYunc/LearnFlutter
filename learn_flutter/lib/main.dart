@@ -23,10 +23,36 @@ class ContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return CustomButtonDemo();
+    return LocalImageDemo();
   }
 }
 
+class LocalImageDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Image.asset("assets/images/2.jpg");
+  }
+}
+
+class NetworkImageDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+        child: Container(
+          width: 300,
+          height: 300,
+          color: Colors.purple,
+          child: Image.network(
+              "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
+//            fit: BoxFit.fill,
+          repeat: ImageRepeat.repeatY,
+          ),
+        )
+    );
+  }
+}
 
 class CustomButtonDemo extends StatelessWidget {
   @override
